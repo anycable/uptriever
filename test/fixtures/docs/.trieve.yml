@@ -1,0 +1,26 @@
+ignore:
+ - "**/*/Readme.md"
+hostname: https://docs.anycable.io
+url_prefix: anycable-test/
+
+groups:
+  - name: Server
+    tracking_id: server
+  - name: Client
+    tracking_id: client
+
+defaults:
+  groups: ["server"]
+  tags: ["docs"]
+
+pages:
+  - source: "./long_polling.md"
+    groups: ["pro", "server"]
+  - "./broker.md"
+  - "./configuration.md"
+  - source: "./library.md"
+    groups: ["package"]
+  - "./pubsub.md"
+  - "./rpc.md"
+  - source: "./js/*.md"
+    groups: ["client"]

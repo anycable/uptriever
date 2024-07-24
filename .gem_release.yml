@@ -1,0 +1,4 @@
+bump:
+  file: lib/uptriever/version.rb
+  skip_ci: true
+
