@@ -33,6 +33,7 @@ Gem::Specification.new do |s|
   s.add_dependency "uri"
   s.add_dependency "json"
   s.add_dependency "optparse"
+  s.add_dependency "erb"
 
   s.add_development_dependency "bundler", ">= 1.15"
   s.add_development_dependency "rake", ">= 13.0"

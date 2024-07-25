@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "yaml"
+require "erb"
 
 module Uptriever
   class Config
@@ -40,7 +41,9 @@ module Uptriever
 
     private
 
-    def config = @config ||= YAML.load_file(config_path)
+    def config
+      @config ||= YAML.load(ERB.new(File.read(config_path)).result)
+    end
 
     def unwrap_pages(items)
       items.flat_map do |item|

@@ -17,5 +17,14 @@ module Uptriever
     def test_groups_returns_defined_groups
       assert_equal [{"name" => "Server", "tracking_id" => "server"}, {"name" => "Client", "tracking_id" => "client"}], @config.groups
     end
+
+    def test_erb
+      ENV["URL_PREFIX"] = "/v1-3"
+      docs = @config.documents
+
+      assert_equal "https://docs.anycable.io/v1-3/js/setup", docs.first.link
+    ensure
+      ENV.delete("URL_PREFIX")
+    end
   end
 end

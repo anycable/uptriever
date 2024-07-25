@@ -1,7 +1,7 @@
 ignore:
  - "**/*/Readme.md"
 hostname: https://docs.anycable.io
-url_prefix: anycable-test/
+url_prefix: <%= ENV.fetch("URL_PREFIX", "anycable-test/") %>
 
 groups:
   - name: Server
