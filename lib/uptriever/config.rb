@@ -10,7 +10,7 @@ module Uptriever
     attr_reader :config_path, :root_dir
 
     def initialize(root_dir)
-      @root_dir = root_dir
+      @root_dir = File.expand_path(root_dir)
       @config_path = File.join(root_dir, ".trieve.yml")
       raise ArgumentError, ".trieve.yml is missing in the #{root_dir}" unless File.file?(config_path)
     end

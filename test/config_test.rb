@@ -5,7 +5,7 @@ require "test_helper"
 module Uptriever
   class ConfigTest < TestCase
     def setup
-      @root_dir = File.join(__dir__, "fixtures", "docs")
+      @root_dir = "./test/fixtures/docs"
       @config_path = File.join(@root_dir, ".trieve.yml")
       @config = Config.new(@root_dir)
     end
