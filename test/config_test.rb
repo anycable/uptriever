@@ -26,5 +26,14 @@ module Uptriever
     ensure
       ENV.delete("URL_PREFIX")
     end
+
+    def test_double_slashes
+      ENV["URL_PREFIX"] = "//latest/subpath"
+      docs = @config.documents
+
+      assert_equal "https://docs.anycable.io/latest/subpath/js/setup", docs.first.link
+    ensure
+      ENV.delete("URL_PREFIX")
+    end
   end
 end

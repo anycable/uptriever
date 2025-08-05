@@ -32,7 +32,7 @@ module Uptriever
           File.join(config["url_prefix"], _1)
         end
 
-        link = page["link"] || File.join(config.fetch("hostname"), relative_link)
+        link = (page["link"] || File.join(config.fetch("hostname"), relative_link)).gsub(/([^:])\/{2,}/, '\1/')
         id = page["id"] || relative_link.sub(/^\//, "").gsub(/[\/-]/, "-")
 
         Document.new(id, page["source"], link, **defaults.merge({groups: page["groups"], tags: page["tags"], weight: page["weight"]}.compact))
