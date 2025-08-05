@@ -26,7 +26,7 @@ module Uptriever
 
     def push_chunk(chunk, upsert: true)
       chunk[:upsert_by_tracking_id] = upsert
-      perform_request("/chunk", chunk.to_json)
+      perform_request("/chunk", chunk.to_json).inspect
     end
 
     def scroll_chunks(per_page: 100)

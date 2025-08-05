@@ -2,6 +2,12 @@
 
 ## master
 
+## 0.2.0 (2025-08-05)
+
+- Ignore frontmatter. ([@palkan][])
+
+- Support `.mdx` ([@palkan][])
+
 ## 0.1.2 (2025-01-03)
 
 - Fix the bug with links including PWD. ([@palkan][])

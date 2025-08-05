@@ -41,6 +41,6 @@ module Uptriever
 
     private
 
-    def chunk_dup = chunk.dup.tap { _1[:chunk_html] = +"" }
+    def chunk_dup = chunk.dup
   end
 end

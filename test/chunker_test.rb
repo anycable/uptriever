@@ -5,7 +5,7 @@ require "test_helper"
 module Uptriever
   class ChunkerTest < TestCase
     def setup
-      @chunk = {chunk_html: "<h1>Title</h1>", link: "http://example.com", tracking_id: "root"}
+      @chunk = {chunk_html: +"<h1>Title</h1>", link: "http://example.com", tracking_id: "root"}
       @chunker = Chunker.new(@chunk)
     end
 
@@ -21,7 +21,7 @@ module Uptriever
     end
 
     def test_chunks_with_h2_splitting
-      @chunker.chunk[:chunk_html] = "<h1>Title</h1><h2>Section 1</h2><p>Content 1</p><h2>Section 2</h2><p>Content 2</p>"
+      @chunker.chunk[:chunk_html] = +"<h1>Title</h1><h2>Section 1</h2><p>Content 1</p><h2>Section 2</h2><p>Content 2</p>"
       chunks = @chunker.chunks
       assert_equal 3, chunks.size
       assert chunks[1][:link].include?("?id=section-1")
@@ -31,7 +31,7 @@ module Uptriever
     end
 
     def test_chunks_with_non_h2_content
-      @chunker.chunk[:chunk_html] = "<h1>Title</h1><p>Intro</p>"
+      @chunker.chunk[:chunk_html] = +"<h1>Title</h1><p>Intro</p>"
       chunks = @chunker.chunks
       assert_equal 1, chunks.size
       assert chunks.first[:chunk_html].include?("Intro")

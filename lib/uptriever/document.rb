@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 require "redcarpet"
+require "front_matter_parser"
+require "front_matter_parser/syntax_parser"
+FrontMatterParser::SyntaxParser::Mdx = FrontMatterParser::SyntaxParser::Md
 
 module Uptriever
   class Document
@@ -17,9 +20,10 @@ module Uptriever
 
     def to_html
       case File.extname(path)
-      when ".md"
+      when ".md", ".mdx"
+        parsed = FrontMatterParser::Parser.parse_file(path)
         markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
-        markdown.render(File.read(path))
+        markdown.render(parsed.content)
       when ".html"
         File.read(path)
       else
@@ -29,7 +33,7 @@ module Uptriever
 
     def to_chunk_json
       {
-        chunk_html: to_html,
+        chunk_html: +to_html,
         link:,
         tracking_id: id,
         weight:
